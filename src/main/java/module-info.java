@@ -6,4 +6,6 @@ module uv.fei.polinizadores {
 
     opens uv.fei.polinizadores to javafx.fxml;
     exports uv.fei.polinizadores;
+    exports uv.fei.bussinesslogic;
+    exports uv.fei.domain;
 }
