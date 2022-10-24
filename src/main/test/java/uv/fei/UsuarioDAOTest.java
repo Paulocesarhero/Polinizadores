@@ -1,4 +1,4 @@
-package java.uv.fei;
+package uv.fei;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,12 +13,11 @@ public class UsuarioDAOTest {
 
     @Before
     public void init(){
-        System.out.println("Hpla inicio");
         usuario = new Usuario("Lolopol", "1223as121wq");
         usuarioDAO = new UsuarioDAO();
     }
     @Test
-    void agregarUsuario() throws SQLException {
+    public void agregarUsuario() throws SQLException {
         usuarioDAO.agregarUsuario(usuario);
     }
 }

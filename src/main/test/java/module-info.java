@@ -1,8 +1,8 @@
-module Polinizadores {
+module test.java.uv.fei {
     requires junit;
     requires uv.fei.polinizadores;
     requires java.sql;
     requires javafx.base;
 
-    exports java.uv.fei to junit;
+    exports uv.fei to junit;
 }
