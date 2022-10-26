@@ -14,13 +14,13 @@ public class UsuarioDAOTest {
 
     @Before
     public void init(){
-        usuario = new Usuario("Lolopol", "1223as121wq");
         usuario1 = new Usuario();
         usuarioDAO = new UsuarioDAO();
     }
     @Test
     public void agregarUnUsuarioExitoso() throws SQLException {
-        usuarioDAO.agregarUsuario(usuario);
+       usuarioDAO.agregarUsuario(usuario);
+
     }
     @Test
     public void agregarUnUsuarioFail()throws SQLException{

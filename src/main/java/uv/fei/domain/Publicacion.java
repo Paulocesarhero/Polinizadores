@@ -6,7 +6,8 @@ public class Publicacion {
     private String fecha;
     private String descripcion;
     private String referencia;
-    public Experto experto;
+    private boolean estado;
+    public Usuario usuario;
 
 
     public String getTitulo() {
@@ -45,6 +46,14 @@ public class Publicacion {
         return id;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -55,6 +64,7 @@ public class Publicacion {
         this.fecha = "";
         this.descripcion = "";
         this.referencia = "";
-        this.experto = new Experto();
+        this.estado = false;
+        this.usuario = new Usuario();
     }
 }
