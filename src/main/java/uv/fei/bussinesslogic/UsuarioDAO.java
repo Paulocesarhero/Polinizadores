@@ -10,7 +10,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     public int agregarUsuario(Usuario usuario) throws SQLException {
         //agregar usuario
         ConexionBD conexionBD = new ConexionBD();
-        int idUsuario = 0;
+        int idUsuario;
         String query = "INSERT INTO usuario(nombre, contrasenia) VALUES (?, MD5(?))";
         try (Connection connection =  conexionBD.openConnection()){
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);

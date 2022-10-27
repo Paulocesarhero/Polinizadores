@@ -10,14 +10,20 @@ import java.sql.SQLException;
 public class UsuarioDAOTest {
     private UsuarioDAO usuarioDAO;
     private Usuario usuario;
+    private Usuario usuario1;
 
     @Before
     public void init(){
-        usuario = new Usuario("Lolopol", "1223as121wq");
+        usuario1 = new Usuario();
         usuarioDAO = new UsuarioDAO();
     }
     @Test
-    public void agregarUsuario() throws SQLException {
-        usuarioDAO.agregarUsuario(usuario);
+    public void agregarUnUsuarioExitoso() throws SQLException {
+       usuarioDAO.agregarUsuario(usuario);
+
+    }
+    @Test
+    public void agregarUnUsuarioFail()throws SQLException{
+        usuarioDAO.agregarUsuario(usuario1);
     }
 }
