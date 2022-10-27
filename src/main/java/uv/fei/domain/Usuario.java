@@ -1,15 +1,15 @@
 package uv.fei.domain;
 
 public class Usuario {
-    private int id;
+    private String id;
     private String nombre;
     private String contrasenia;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -30,7 +30,7 @@ public class Usuario {
     }
 
     public Usuario() {
-        this.id = 0;
+        this.id = "";
         this.nombre = "";
         this.contrasenia = "";
     }
