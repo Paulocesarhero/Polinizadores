@@ -67,4 +67,9 @@ public class Publicacion {
         this.estado = false;
         this.usuario = new Usuario();
     }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
 }

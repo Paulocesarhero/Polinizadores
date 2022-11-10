@@ -22,9 +22,9 @@ public class PublicacionDAO implements IPublicacionDAO{
             if (!resultSet.next()){
                 throw new SQLException("Error al obtener las publicaciones");
             }else {
-                while (resultSet.next()){
+                do {
                     publicaciones.add(getPublicacion(resultSet));
-                }
+                }while (resultSet.next());
             }
         }catch (SQLException sqlException){
             throw sqlException;
@@ -38,18 +38,21 @@ public class PublicacionDAO implements IPublicacionDAO{
         String fecha;
         String descripcion;
         String referencia;
+        boolean estado;
         try {
             id = resultSet.getInt("id");
             titulo = resultSet.getString("titulo");
             fecha = resultSet.getString("fecha");
             descripcion = resultSet.getString("descripcion");
-            referencia = resultSet.getString("referencia");
+            referencia = resultSet.getString("referencias");
+            estado = resultSet.getBoolean("estado");
 
             publicacion.setId(id);
             publicacion.setTitulo(titulo);
             publicacion.setFecha(fecha);
             publicacion.setDescripcion(descripcion);
             publicacion.setReferencia(referencia);
+            publicacion.setEstado(estado);
 
         } catch (SQLException e) {
             throw e;
