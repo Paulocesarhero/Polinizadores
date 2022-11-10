@@ -109,7 +109,7 @@ public class Login implements Initializable {
                 passwordField.setText(fieldPassword2.getText());
             }
         });
-
+        int id=0;
         passwordField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
