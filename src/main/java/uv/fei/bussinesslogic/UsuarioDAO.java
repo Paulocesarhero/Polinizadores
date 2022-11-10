@@ -29,4 +29,22 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
         return idUsuario;
     }
+
+    @Override
+    public boolean login(String email, String contrasenia) throws SQLException {
+
+        boolean flag = false;
+        ConexionBD conexionBD = new ConexionBD();
+        String query="Select * from usuario where email = ? and contrasenia = MD5(?)";
+        try (Connection connection = conexionBD.openConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, email);
+            statement.setString(2, contrasenia);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                flag = true;
+            }
+            return flag;
+        }
+    }
 }

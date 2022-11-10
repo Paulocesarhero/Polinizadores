@@ -4,39 +4,74 @@ public class Usuario {
     private String id;
     private String nombre;
     private String contrasenia;
+    
+    private String email;
+    private String rol;
+    private String acreditacion;
+
+    public String getRol() {
+        return rol;
+    }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getEmail() {
+        return email;
     }
 
     public String getContrasenia() {
         return contrasenia;
     }
 
+    public String getAcreditacion() {
+        return acreditacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAcreditacion(String acreditacion) {
+        this.acreditacion = acreditacion;
+    }
+
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Usuario() {
         this.id = "";
         this.nombre = "";
         this.contrasenia = "";
+        this.acreditacion="";
+        this.email="";
+        this.rol="";
     }
 
-    public Usuario(String nombre, String contrasenia) {
+    public Usuario(String nombre, String contrasenia, String id, String acreditacion, String email, String rol) {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
+        this.rol = rol;
+        this.email = email;
+        this.acreditacion = acreditacion;
+        this.id = id;
     }
 }

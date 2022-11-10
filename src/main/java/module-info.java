@@ -2,6 +2,7 @@ module uv.fei.polinizadores {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
 
 
     opens uv.fei.polinizadores to javafx.fxml;

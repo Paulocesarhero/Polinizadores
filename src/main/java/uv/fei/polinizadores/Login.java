@@ -1,18 +1,32 @@
 package uv.fei.polinizadores;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import uv.fei.bussinesslogic.UsuarioDAO;
+import uv.fei.domain.Usuario;
 
-public class Login {
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
+public class Login implements Initializable {
+
+    @FXML
+    private CheckBox checkBoxShowPassword;
+    @FXML
+    private PasswordField fieldPassword2;
     @FXML
     private TextField fieldEmail;
 
     @FXML
-    private TextField fieldPassword;
+    private TextField passwordField;
     @FXML
     private Label labelRegistrar;
 
@@ -28,13 +42,15 @@ public class Login {
     @FXML
     void labelOlvidarClic(ActionEvent event) {
 
-
     }
 
     @FXML
     void buttonLoginClic(ActionEvent event) {
-        if(areItemsEmpty()){
-
+        if(!areItemsEmpty()){
+            logging();
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Llena todos los campos");
         }
     }
 
@@ -48,13 +64,57 @@ public class Login {
     void labelRegistrarClic(ActionEvent event) {
 
     }
+    @FXML
+    void passwordFieldListenner(ActionEvent event) {
+        labelRegistrar.setText(fieldPassword2.getText());
+    }
+    @FXML
+    void checkBoxShow_OnAction(ActionEvent event) {
+        fieldPassword2.setVisible(!checkBoxShowPassword.selectedProperty().getValue());
+        fieldPassword2.setEditable(!checkBoxShowPassword.selectedProperty().getValue());
+        passwordField.setEditable(checkBoxShowPassword.selectedProperty().getValue());
+        passwordField.setVisible(checkBoxShowPassword.selectedProperty().getValue());
+    }
 
     private boolean areItemsEmpty(){
         boolean flag = false;
-        if (fieldPassword.getText().isEmpty() || fieldEmail.getText().isEmpty()) {
+        if (fieldPassword2.getText().isEmpty() || fieldEmail.getText().isEmpty()) {
             flag = true;
         }
         return flag;
     }
+    private void logging(){
+        String contrasenia = fieldPassword2.getText();
+        String email = fieldEmail.getText();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
 
+        boolean result = false;
+        try {
+            result = usuarioDAO.login(email, contrasenia);
+            if (!result) {
+                JOptionPane.showMessageDialog(null,"Credenciales invalidas");
+            }else{
+                JOptionPane.showMessageDialog(null,"Bienvenido");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,ex);
+        }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fieldPassword2.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                passwordField.setText(fieldPassword2.getText());
+            }
+        });
+
+        passwordField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                fieldPassword2.setText(passwordField.getText());
+            }
+        });
+    }
 }
