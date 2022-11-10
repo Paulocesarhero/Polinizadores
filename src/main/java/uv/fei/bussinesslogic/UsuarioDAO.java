@@ -11,11 +11,14 @@ public class UsuarioDAO implements IUsuarioDAO{
         //agregar usuario
         ConexionBD conexionBD = new ConexionBD();
         int idUsuario;
-        String query = "INSERT INTO usuario(nombre, contrasenia) VALUES (?, MD5(?))";
+        String query = "INSERT INTO usuario(nombre, contrasenia, email, acreditacion, rol) VALUES (?, MD5(?), ?, ?, ?)";
         try (Connection connection =  conexionBD.openConnection()){
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, usuario.getNombre());
             statement.setString(2, usuario.getContrasenia());
+            statement.setString(3, usuario.getEmail());
+            statement.setString(4, usuario.getAcreditacion());
+            statement.setString(5, usuario.getRol());
             int executeUpdate = statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if(executeUpdate == 0){
