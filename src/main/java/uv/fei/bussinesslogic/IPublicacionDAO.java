@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IPublicacionDAO {
     public List<Publicacion> obtenerPublicaciones() throws SQLException;
+    public void actualizarPublicacion(Publicacion publicacion) throws SQLException;
 }

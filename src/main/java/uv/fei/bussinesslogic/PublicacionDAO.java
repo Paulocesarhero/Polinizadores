@@ -31,6 +31,26 @@ public class PublicacionDAO implements IPublicacionDAO{
         }
         return publicaciones;
     }
+
+    @Override
+    public void actualizarPublicacion(Publicacion publicacion) throws SQLException {
+        int idObj = publicacion.getId();
+        boolean estadoObj = publicacion.isEstado();
+        ConexionBD conexionBD = new ConexionBD();
+        try (Connection connection = conexionBD.openConnection()){
+            String query = "UPDATE Publicacion set Estado=? WHERE Id=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setBoolean(1,estadoObj);
+            statement.setInt(2,idObj);
+            int resultado = statement.executeUpdate();
+            if (resultado < 1){
+                throw new SQLException("Error al actualizar la publicacion");
+            }
+        }catch (SQLException sqlException){
+            throw sqlException;
+        }
+    }
+
     private Publicacion getPublicacion(ResultSet resultSet) throws SQLException {
         Publicacion publicacion = new Publicacion();
         int id;
