@@ -1,59 +1,81 @@
 package uv.fei.domain;
 
 public class Publicacion {
-    private String name;
-    private String email;
-    private String password;
-    private String rol;
-    private String acreditation;
-    private String id;
+    private int id;
+    private String titulo;
+    private String fecha;
+    private String descripcion;
+    private String referencia;
+    private boolean estado;
+    public int idUsuario;
 
-    public String getAcreditation() {
-        return acreditation;
+
+    public String getTitulo() {
+        return titulo;
     }
 
-    public String getRol() {
-        return rol;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFecha() {
+        return fecha;
     }
 
-    public String getId() {
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+
+    public int getId() {
         return id;
     }
-
-    public String getName() {
-        return name;
+    public int getIdUsuario(){
+        return idUsuario;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setAcreditation(String acreditation) {
-        this.acreditation = acreditation;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setIdUsuario(int idUsuario){
+        this.idUsuario= idUsuario;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Publicacion() {
+        this.id = 0;
+        this.titulo = "";
+        this.fecha = "";
+        this.descripcion = "";
+        this.referencia = "";
+        this.estado = false;
+        this.idUsuario=0;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    @Override
+    public String toString() {
+        return titulo;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 }

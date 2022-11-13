@@ -4,11 +4,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import uv.fei.bussinesslogic.UsuarioDAO;
+import uv.fei.domain.Singleton;
 import uv.fei.domain.Usuario;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -37,9 +42,6 @@ public class Login implements Initializable {
     private Button buttonEntrarInvitado;
 
     @FXML
-    private Label labelOlvidar;
-
-    @FXML
     void labelOlvidarClic(ActionEvent event) {
 
     }
@@ -50,13 +52,12 @@ public class Login implements Initializable {
             logging();
         }
         else {
-            JOptionPane.showMessageDialog(null,"Llena todos los campos");
+            JOptionPane.showMessageDialog(null,"Por favor, llena todos los campos");
         }
     }
 
     @FXML
     void buttonEntrarInvitadoClic(ActionEvent event) {
-        labelOlvidar.setText("hola");
 
     }
 
@@ -92,9 +93,10 @@ public class Login implements Initializable {
         try {
             result = usuarioDAO.login(email, contrasenia);
             if (!result) {
-                JOptionPane.showMessageDialog(null,"Credenciales invalidas");
+                JOptionPane.showMessageDialog(null,"Contraseña o correo electronico incorrecto");
             }else{
-                JOptionPane.showMessageDialog(null,"Bienvenido");
+                JOptionPane.showMessageDialog(null,"Bienvenido "+ Singleton.getUserName() );
+                openWindowMenu();
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,18 +105,31 @@ public class Login implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         fieldPassword2.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 passwordField.setText(fieldPassword2.getText());
             }
         });
-        int id=0;
         passwordField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 fieldPassword2.setText(passwordField.getText());
             }
         });
+    }
+    private void openWindowMenu(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("RegistrarPublicacion.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) this.buttonLogin.getScene().getWindow();
+            stage.setTitle("Registrar Publicacion");
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException ioException){
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ioException);
+        }
     }
 }

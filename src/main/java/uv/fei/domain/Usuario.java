@@ -1,7 +1,7 @@
 package uv.fei.domain;
 
 public class Usuario {
-    private String id;
+    private int id;
     private String nombre;
     private String contrasenia;
     
@@ -13,7 +13,7 @@ public class Usuario {
         return rol;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -37,7 +37,7 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -58,20 +58,11 @@ public class Usuario {
     }
 
     public Usuario() {
-        this.id = "";
+        this.id = 0;
         this.nombre = "";
         this.contrasenia = "";
         this.acreditacion="";
         this.email="";
         this.rol="";
-    }
-
-    public Usuario(String nombre, String contrasenia, String id, String acreditacion, String email, String rol) {
-        this.nombre = nombre;
-        this.contrasenia = contrasenia;
-        this.rol = rol;
-        this.email = email;
-        this.acreditacion = acreditacion;
-        this.id = id;
     }
 }

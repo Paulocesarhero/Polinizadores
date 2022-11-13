@@ -18,8 +18,12 @@ public class Singleton {
         return login.user.getNombre();
     }
 
-    public static String getId(){
+    public static int getId(){
         return login.user.getId();
     }
+
+    public static  String rol(){ return  login.user.getRol();}
+
+    public  static String acreditation(){ return  login.user.getAcreditacion();}
 
 }

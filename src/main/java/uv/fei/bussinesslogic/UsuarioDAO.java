@@ -1,6 +1,7 @@
 package uv.fei.bussinesslogic;
 
 import uv.fei.dataaccess.ConexionBD;
+import uv.fei.domain.Singleton;
 import uv.fei.domain.Usuario;
 
 import java.sql.*;
@@ -43,6 +44,15 @@ public class UsuarioDAO implements IUsuarioDAO{
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 flag = true;
+                Usuario user1 = new Usuario();
+
+                user1.setId(resultSet.getInt("id"));
+                user1.setContrasenia(resultSet.getString("contrasenia"));
+                user1.setAcreditacion(resultSet.getString("acreditacion"));
+                user1.setRol(resultSet.getString("rol"));
+                user1.setNombre(resultSet.getString("nombre"));
+                user1.setEmail(resultSet.getString("email"));
+                Singleton.setLogin(user1);
             }
             return flag;
         }
